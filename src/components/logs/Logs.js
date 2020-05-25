@@ -19,7 +19,7 @@ const Logs = () => {
 
     setLogs(data);
     setLoading(false);
-  };
+  }
 
   if (loading){
     return <Preloader/>
