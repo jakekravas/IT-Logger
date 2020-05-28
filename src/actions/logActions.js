@@ -1,4 +1,4 @@
-import {GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG } from "./types";
+import {GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG } from "./types";
 
 // export const getLogs = () => {
 //   // Redux thunk allows us to do this
@@ -36,7 +36,7 @@ export const getLogs = () => async dispatch => {
 };
 
 // Add new log
-export const addLog = (log) => async dispatch => {
+export const addLog = log => async dispatch => {
   try {
     console.log("ADD LOG");
     setLoading();
@@ -63,6 +63,27 @@ export const addLog = (log) => async dispatch => {
     });
   }
 }
+
+// Delete log from server
+export const deleteLog = id => async dispatch => {
+  try {
+    setLoading();
+
+    await fetch(`/logs/${id}`, {
+      method: "DELETE"
+    });
+
+    dispatch({
+      type: DELETE_LOG,
+      payload: id
+    });
+  } catch (err) {
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err.response.data
+    })
+  }
+};
 
 // Set loading to true
 export const setLoading = () => {

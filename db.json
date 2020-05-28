@@ -1,13 +1,6 @@
 {
   "logs": [
     {
-      "message": "asdf",
-      "attention": false,
-      "tech": "John Doe",
-      "date": "2020-05-28T07:26:46.735Z",
-      "id": 1
-    },
-    {
       "message": "oooo",
       "attention": true,
       "tech": "Sam Smith",
