@@ -49,7 +49,6 @@ export default (state = initialState, action) => {
         logs: action.payload
       }
     case SET_CURRENT:
-      console.log(action.payload);
       return {
         ...state,
         current: action.payload

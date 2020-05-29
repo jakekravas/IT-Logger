@@ -15,7 +15,6 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
 
   const onSetCurrent = () => {
     setCurrent(log);
-    console.log(log);
   }
 
   return (
