@@ -5,7 +5,8 @@ import {GET_LOGS,
   DELETE_LOG,
   UPDATE_LOG,
   SET_CURRENT,
-  CLEAR_CURRENT
+  CLEAR_CURRENT,
+  SEARCH_LOGS
 } from "../actions/types";
 
 const initialState = {
@@ -41,6 +42,11 @@ export default (state = initialState, action) => {
         // if iterated log is the newly updated one, return that instead of the old one. Otherwise, return whatever the log was already set at
         logs: state.logs.map(log => log.id === action.payload.id ? action.payload : log),
         loading: false
+      }
+    case SEARCH_LOGS:
+      return {
+        ...state,
+        logs: action.payload
       }
     case SET_CURRENT:
       console.log(action.payload);
