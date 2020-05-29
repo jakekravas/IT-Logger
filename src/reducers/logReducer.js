@@ -1,4 +1,12 @@
-import {GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG } from "../actions/types";
+import {GET_LOGS,
+  SET_LOADING,
+  LOGS_ERROR,
+  ADD_LOG,
+  DELETE_LOG,
+  UPDATE_LOG,
+  SET_CURRENT,
+  CLEAR_CURRENT
+} from "../actions/types";
 
 const initialState = {
   logs: null,
@@ -26,6 +34,24 @@ export default (state = initialState, action) => {
         ...state,
         logs: state.logs.filter(log => log.id !== action.payload),
         loading: false
+      }
+    case UPDATE_LOG:
+      return {
+        ...state,
+        // if iterated log is the newly updated one, return that instead of the old one. Otherwise, return whatever the log was already set at
+        logs: state.logs.map(log => log.id === action.payload.id ? action.payload : log),
+        loading: false
+      }
+    case SET_CURRENT:
+      console.log(action.payload);
+      return {
+        ...state,
+        current: action.payload
+      }
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null
       }
     case SET_LOADING:
       return {
